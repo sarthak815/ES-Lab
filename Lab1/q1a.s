@@ -12,10 +12,11 @@ Reset_Handler
 	LDR R1,=DST
 	MOV R2,#10
 LOOP
-	LDR R3, [R0],#4
+	LDR R3, [R0],#4;dffffffffffffffffffffffa
+	
 	STR R3, [R1],#4
 	SUB R2,#1
-	CMP R2,#0
+	TEQ R2,#0
 	BNE LOOP
 STOP 
 	B STOP

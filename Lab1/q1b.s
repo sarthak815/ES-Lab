@@ -8,14 +8,24 @@ __Vectors
 	ENTRY
 	EXPORT Reset_Handler
 Reset_Handler
-	LDR R0,=SRC+(9*4)
-	LDR R1,=SRC+12+(9*4)
+	LDR R0,=SRC
+	LDR R1,=DST
 	MOV R2,#10
-LOOP
-	LDR R3, [R0],#-4
-	STR R3, [R1],#-4
+LOOP1
+	LDR R3, [R0],#4;
+	STR R3, [R1],#4
 	SUB R2,#1
-	CMP R2,#0
+	TEQ R2,#0
+	BNE LOOP1
+	
+	LDR R3,=DST+(9*4)+12
+	MOV R2,#10
+	SUB R1,#4
+LOOP
+	LDR R4, [R1],#-4
+	STR R4, [R3],#-4
+	SUB R2,#1
+	TEQ R2,#0
 	BNE LOOP
 STOP 
 	B STOP
