@@ -14,7 +14,7 @@ Reset_Handler
 	LDR R1,= DST	
 	MOV R2, #2
 loop  LDRB R3, [R0], #1
-	CMP R3, #0x41
+	CMP R3, #0x39
 	SUBHS R3, #0x37
 	BHS store
 	CMP R3, #0x39
@@ -28,7 +28,7 @@ store  ORR R4, R3
 	ROR R4, #24
 	STR R4, [R1]
 	
-SRC DCD 0x4637
+SRC DCD 0x4037
 	AREA DATASEG, DATA, READWRITE
 DST DCD 0
 	END
