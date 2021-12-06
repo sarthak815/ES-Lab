@@ -13,15 +13,23 @@ __Vectors
 
 Reset_Handler
 		
-		MOV R0,#10
-		MOV R1,#10
-		mov R2,#2
-		MOV R3,#10
-		SMLAL R0,R2,R1,R3
+	LDR R0, =-7
+	LDR R1,=-10
+	LDR R2, =0X5946F937
+	LDR R13,=0X10000014
+	STMDB R13!,{R0-R2}
+	PUSH {R1}
+	PUSH {R0}
+	PUSH {R2}
+	STM R13, {R0-R2}
+	POP {R5}
+	POP {R7}
+	POP {R6}
+	
 	
 STOP 	
 	B STOP
-NUM DCD 1,6,4,5,9,3,2,7,8,10
-		AREA mydata,DATA,READWRITE
 
-		END
+	AREA mydata,DATA,READWRITE
+
+	END
